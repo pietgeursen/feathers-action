@@ -22,15 +22,17 @@ test('feathersAction called with a object returns object with action, updater an
   t.end()
 })
 
-test('feathersAction called with an array of strings returns object with action, updater and epic keys', function(t) {
+test('feathersAction called with an array of strings returns object with keys that match the strings', function(t) {
   const modules = feathersAction(['cats', 'dogs'])
-  t.deepEqual(Object.keys(modules), apiKeyNames)
+  t.deepEqual(Object.keys(modules.cats), apiKeyNames)
+  t.deepEqual(Object.keys(modules.dogs), apiKeyNames)
   t.end()
 })
 
-test('feathersAction called with an array of objects returns object with action, updater and epic keys', function(t) {
+test('feathersAction called with an array of objects returns object with keys that match the object names', function(t) {
   const modules = feathersAction({name:'cats'}, {name:'dogs'})
-  t.deepEqual(Object.keys(modules), apiKeyNames)
+  t.deepEqual(Object.keys(modules.cats), apiKeyNames)
+  t.deepEqual(Object.keys(modules.dogs), apiKeyNames)
   t.end()
 })
 
