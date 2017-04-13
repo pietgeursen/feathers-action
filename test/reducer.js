@@ -12,15 +12,21 @@ const catsRecords = {
   2: { id: 2, name: 'mug' }
 }
 
+const cat = catsRecords[0]
+
+const defaultState = {
+  cats: {},
+  feathersAction: {
+    requests: {} 
+  }
+}
+
+deepFreeze(defaultState)
+deepFreeze(catsRecords)
+
 test('updater returns correct default state', function(t) {
   state = cats.updater({type: 'woof'})() 
-  expectedState = {
-    cats: {},
-    feathersAction: {
-      requests: {} 
-    }
-  }
-  t.deepEqual(state, expectedState)
+  t.deepEqual(state, defaultState)
   t.end()
 })
 
@@ -40,15 +46,25 @@ test('patch', function (t) {
 })
 
 test('remove', function (t) {
-  const actions = cats.actions 
+  const { actions, update } = cats 
+  let state = Object.assign({}, defaultState, {cats: {[cat.id]: cat} })
+  deepFreeze(state)
+  const startAction = actions.remove({ id: cat.id })
 
-  let state = { cats: { [thing.id]: thing } }
-  const cid = '1234'
-  const startAction = actions.remove.start(cid, { id: thing.id })
-  state = reducer(state, startAction)
-  t.deepEqual(state.records, {})
-  const successAction = actions.remove.success(cid, thing)
-  state = reducer(state, successAction)
-  t.deepEqual(state.records, {})
+  state = updater(startAction)(state)
+  t.deepEqual(state.cats, {})
+  t.ok(state.requests)
   t.end()
+})
+
+test('start', function (t) {
+
+})
+
+test('complete', function (t) {
+
+})
+
+test('error', function (t) {
+
 })
