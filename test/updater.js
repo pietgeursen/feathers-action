@@ -47,18 +47,31 @@ test('patch', function (t) {
 
 test('remove', function (t) {
   const { actions, update } = cats 
-  let state = Object.assign({}, defaultState, {cats: {[cat.id]: cat} })
+  const state = Object.assign({}, defaultState, {cats: {[cat.id]: cat} })
   deepFreeze(state)
-  const startAction = actions.remove({ id: cat.id })
+  const action = actions.remove({ id: cat.id })
 
-  state = updater(startAction)(state)
-  t.deepEqual(state.cats, {})
-  t.ok(state.requests)
+  const newState = updater(action)(state)
+
+  t.deepEqual(newState.cats, {})
+  t.ok(newState.requests)
   t.end()
 })
 
 test('start', function (t) {
+  const { actions, update } = cats 
+  const request = {
+    method: 'create'
+    args: {
+    
+    }
+  }
+  //not sure about the api of start action here.
+  const action = actions.start(request)
 
+  const newState = updater(action)(state)
+  t.ok(newState.requests[action.cid])
+  t.end()
 })
 
 test('complete', function (t) {
