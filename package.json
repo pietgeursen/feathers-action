@@ -40,6 +40,7 @@
     "tcomb": "^3.2.20"
   },
   "devDependencies": {
+    "deep-freeze": "0.0.1",
     "feathers": "^1.3.0",
     "feathers-memory": "^0.5.3",
     "redux": "^3.3.1",
