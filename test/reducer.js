@@ -8,9 +8,7 @@ const assign = require('lodash/assign')
 
 const createActions = require('../src/actions')
 const createReducer = require('../src/reducer')
-const types = require('./types')
 
-const Resource = types.Resource
 
 const things = {
   0: { id: 0, name: 'honey', description: 'sweet and delicious.' },
