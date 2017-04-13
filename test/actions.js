@@ -13,17 +13,64 @@ test('action creators have correct keys', function (t) {
 })
 
 test('start', function(t) {
+  const expectedAction = {
+    type: 'REQUEST_START' //this?
+    cid: 'abcd',
+    serviceName: 'cats',
+    methods: 'create',
+    args: {
+      data: {
+        name: 'fluffy'  
+      }
+    }
+  }
 
+  const action = cats.actions.start({ 
+    methods: 'create',
+    args: {name: 'fluffy'}
+  })
+
+  t.deepEqual(action, expectedAction)
   t.end()
 })
 
 test('complete', function(t) {
 
+  const expectedAction = {
+    type: 'REQUEST_COMPLETE' //this?
+    cid: 'abcd',
+    args: {
+      data: {
+        name: 'fluffy'  
+      }
+    }
+  }
+
+  const action = cats.actions.complete({ 
+    cid: 'abcd',
+    args: {name: 'fluffy'}
+  })
+
+  t.deepEqual(action, expectedAction)
   t.end()
 })
 
 test('error', function(t) {
 
+  const expectedAction = {
+    type: 'REQUEST_ERROR' //this?
+    cid: 'abcd',
+    args: {
+      error: 'fluffy'
+    }
+  }
+
+  const action = cats.actions.error({ 
+    cid: 'abcd',
+    args: {error: 'fluffy'}
+  })
+
+  t.deepEqual(action, expectedAction)
   t.end()
 })
 
