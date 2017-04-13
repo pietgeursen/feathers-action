@@ -12,6 +12,21 @@ test('action creators have correct keys', function (t) {
   t.end()
 })
 
+test('start', function(t) {
+
+  t.end()
+})
+
+test('complete', function(t) {
+
+  t.end()
+})
+
+test('error', function(t) {
+
+  t.end()
+})
+
 test('create returns the correct action', function(t) {
   const createAction = cats.actions.create({name: 'fluffy'})
   const expectedAction = {
